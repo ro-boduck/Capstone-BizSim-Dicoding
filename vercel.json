@@ -2,26 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist",
-        "buildCommand": "npm run build"
-      }
-    },
-    {
-      "src": "backend/server.js",
+      "src": "server.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "/backend/server.js" },
-    { "src": "/simulations(.*)", "dest": "/backend/server.js" },
-    { "src": "/health", "dest": "/backend/server.js" },
-    { "src": "/(.*)", "dest": "/frontend/dist/$1" }
+    {
+      "src": "/(.*)",
+      "dest": "/server.js"
+    }
   ],
   "env": {
-    "VITE_EXPRESS_API": "@express_api_url",
-    "VITE_FASTAPI_URL": "@fastapi_url"
+    "SUPABASE_URL": "@supabase_url",
+    "SUPABASE_SERVICE_ROLE_KEY": "@supabase_service_role_key"
   }
 }

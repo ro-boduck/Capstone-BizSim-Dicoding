@@ -3,9 +3,10 @@
 # =============================================================
 
 # ---------------------------------------------------------------
-# Legacy / junk directories
+# Next.js build output
 # ---------------------------------------------------------------
-DONT USE!!!/
+.next/
+out/
 
 # ---------------------------------------------------------------
 # AI agent tooling (not part of the app)
@@ -83,3 +84,8 @@ Thumbs.db
 .idea/
 .vscode/*
 !.vscode/extensions.json
+
+# Agent Traces
+AGENTS.md
+CLAUDE.md
+app-page-backup.tsx
