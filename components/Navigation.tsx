@@ -143,7 +143,7 @@ export default function Navigation() {
               )}
             </div>
           ) : (
-            <div className="flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-3">
               <Link
                 href="/login"
                 className="text-[11px] font-bold uppercase tracking-wider text-muted-text hover:text-foreground px-2"
@@ -192,14 +192,43 @@ export default function Navigation() {
           >
             Predictor
           </Link>
-          {user && (
-            <Link
-              href="/dashboard"
-              onClick={() => setShowMobileMenu(false)}
-              className={getLinkClass('/dashboard')}
-            >
-              Dashboard
-            </Link>
+          {user ? (
+            <>
+              <Link
+                href="/dashboard"
+                onClick={() => setShowMobileMenu(false)}
+                className={getLinkClass('/dashboard')}
+              >
+                Dashboard
+              </Link>
+              <button
+                onClick={() => {
+                  setShowMobileMenu(false);
+                  logout();
+                }}
+                className="w-full flex items-center gap-2 py-1 px-3 text-left text-xs font-bold uppercase tracking-wider text-health-critical cursor-pointer"
+              >
+                <Icon name="logout" size={14} />
+                <span>Keluar</span>
+              </button>
+            </>
+          ) : (
+            <div className="flex flex-col gap-3 pt-2 border-t border-border-aura">
+              <Link
+                href="/login"
+                onClick={() => setShowMobileMenu(false)}
+                className="text-[11px] font-bold uppercase tracking-wider text-muted-text hover:text-foreground px-3 py-1"
+              >
+                Masuk
+              </Link>
+              <Link
+                href="/register"
+                onClick={() => setShowMobileMenu(false)}
+                className="bg-primary-action text-primary-foreground hover:bg-primary-action/90 rounded-[6px] py-1.5 px-3 text-[10px] font-bold uppercase tracking-wider transition-colors text-center inline-block"
+              >
+                Daftar
+              </Link>
+            </div>
           )}
         </div>
       )}
